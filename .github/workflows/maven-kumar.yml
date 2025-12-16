@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v3
       - name: set-up jdk
         uses: actions/setup-java@v3
-        with:
+        with: 
           distribution: 'temurin'
           java-version: '17'  
       - name: maven validate
