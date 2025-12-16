@@ -23,13 +23,11 @@ jobs:
         run: mvn package
       - name: varify war file
         run: ls -lh target/
-      - name: Build, Test and SonarQube Scan
+      - name: Deploy WAR to Tomcat
         run: |
-          mvn clean verify sonar:sonar \
-            -Dsonar.projectKey=train-ticket-reservation \
-            -Dsonar.host.url="${{ secrets.SONAR_HOST }}" \
-            -Dsonar.login="${{ secrets.SONAR_TOKEN }}"
-
+          curl -v -u ${{ secrets.TOMCAT_USERNAME }}:${{ secrets.TOMCAT_PASSWORD }} \
+          -T target/*.war \
+          "${{ secrets.TOMCAT_URL }}/manager/text/deploy?path=/myapp&update=true"
         
       
  
