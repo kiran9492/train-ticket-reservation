@@ -28,3 +28,16 @@ jobs:
           curl -v -u ${{ secrets.TOMCAT_USERNAME }}:${{ secrets.TOMCAT_PASSWORD }} \
           -T target/*.war \
           "${{ secrets.TOMCAT_URL }}/manager/text/deploy?path=/myapp&update=true"
+      - name: SonarQube Analysis
+        run: |
+         mvn sonar:sonar \
+         -Dsonar.projectKey=train-ticket-reservation \
+         -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+         -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }}
+
+
+
+
+
+
+          
