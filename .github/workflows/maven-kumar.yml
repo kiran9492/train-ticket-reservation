@@ -15,7 +15,7 @@ jobs:
           java-version: '17'  
       - name: maven validate
         run: mvn validate 
-      - name: maven compile
+      - name: maven compile 
         run: mvn compile
       - name: maven test
         run: mvn test
