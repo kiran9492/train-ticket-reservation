@@ -24,10 +24,6 @@ jobs:
       - name: varify war file
         run: ls -lh target/
       - name: Deploy WAR to Tomcat
-        run: |
-          curl -v -u ${{ secrets.TOMCAT_USERNAME }}:${{ secrets.TOMCAT_PASSWORD }} \
-          -T target/*.war \
-          "${{ secrets.TOMCAT_URL }}/manager/text/deploy?path=/myapp&update=true"
       - name: SonarQube Analysis
         run: |
          mvn sonar:sonar \
