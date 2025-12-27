@@ -24,9 +24,10 @@ jobs:
         run: mvn package
       - name: varify war file
         run: ls -lh target/
-      - name: SonarQube Analysis
+      - name: 🔍 SonarQube Analysis
         run: |
-         mvn sonar:sonar \
-         -Dsonar.projectKey=train-ticket-reservation \
-         -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
-         -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          mvn clean verify \
+          org.sonarsource.scanner.maven:sonar-maven-plugin:3.10.0.2594:sonar \
+          -Dsonar.projectKey=train-ticket-reservation \
+          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
